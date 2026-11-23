@@ -1,3 +1,9 @@
+const investimentoInicial = 5000; // Valor inicial investido
+const taxaMensal = 1.5; // Taxa de rendimento mensal em %
+const meses = 12; // Duração do investimento
+const metaInvestimento = 1500; // Meta para o saldo final do investimento
+const metaOrcamento = 2000; // Meta para o orçamento de despesas
+
 function simularInvestimento(valorInicial, taxa, meses) {
     let valor = valorInicial;
     while (meses) {
@@ -8,7 +14,7 @@ function simularInvestimento(valorInicial, taxa, meses) {
     return valor;
 }
 
-const resultado = simularInvestimento(1000, 1.0, 12);
+const resultado = simularInvestimento(investimentoInicial, taxaMensal, meses);
 
 console.log(resultado);
 
@@ -17,6 +23,7 @@ const despesas = {
     transporte: 150,
     aluguel: 1200,
     lazer: 200,
+    escola: 500,
 };
 
 function gerenciarDespesas(despesas) {
@@ -26,6 +33,8 @@ function gerenciarDespesas(despesas) {
     }
     return totalDespesas;
 }
+
+const totalDespesas = gerenciarDespesas(despesas);
 
 console.log(gerenciarDespesas(despesas));
 
@@ -49,21 +58,15 @@ function obterMesAtual() {
 
     return meses[x];
 }
+const mesAtual = obterMesAtual();
 
-const investimentoInicial = 1000; // Valor inicial investido
-const taxaMensal = 1.5; // Taxa de rendimento mensal em %
-const meses = 12; // Duração do investimento
-const metaInvestimento = 1500; // Meta para o saldo final do investimento
-const metaOrcamento = 2000; // M
-
-function gerarRelatorio(metaInvestimento, metaOrcamento) {
-    const mes = obterMesAtual();
-    const saldoFinalInvestimento = simularInvestimento(
-        investimentoInicial,
-        taxaMensal,
-        meses,
-    );
-    const totalDespesa = gerenciarDespesas(despesas);
+function gerarRelatorio(
+    mes,
+    saldoFinalInvestimento,
+    totalDespesa,
+    metaInvestimento,
+    metaOrcamento,
+) {
     console.log(`Mês: ${mes}`);
     console.log(`Saldo final do investimento ${saldoFinalInvestimento}`);
     console.log(`Total das despesas: ${totalDespesa}`);
@@ -98,4 +101,10 @@ function gerarRelatorio(metaInvestimento, metaOrcamento) {
     }
 }
 
-gerarRelatorio(metaInvestimento, metaOrcamento);
+gerarRelatorio(
+    mesAtual,
+    resultado,
+    totalDespesas,
+    metaInvestimento,
+    metaOrcamento,
+);
